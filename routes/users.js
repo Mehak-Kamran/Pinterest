@@ -19,4 +19,4 @@ const userSchema=mongoose.Schema({
 userSchema.plugin(plm);
 
 const usermodel=mongoose.model("usermodel",userSchema);
-module.exports(usermodel);
+module.exports=usermodel;
