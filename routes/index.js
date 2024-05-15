@@ -3,21 +3,24 @@ var router = express.Router();
 var passport=require("passport");
 const usermodel=require("./users")
 const localStrategy=require("passport-local");
+const upload=require("./multer")//import multer middleware setup
 passport.use(new localStrategy(usermodel.authenticate()));
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index');
+  res.render('index',{nav:false});
 });
 
 router.get("/register",function(req,res){
-  res.render("register");
+  res.render("register",{nav:false});
 })
 
-router.get("/profile",isLoggedIn,function(req,res){
-  res.render("profile");
+router.get("/profile",isLoggedIn,async function(req,res){
+  const user = await usermodel.findOne({username:req.session.passport.user})
+  res.render("profile",{user,nav:true});
 })
+
 
 //register
 router.post("/register",function(req,res){
@@ -32,6 +35,18 @@ router.post("/register",function(req,res){
         res.redirect("/profile");
       })
      })
+});
+
+//fileupload route
+router.post("/fileupload",isLoggedIn,upload.single("image"),async (req,res,next)=>{
+  //  if(!req.file){
+  //   return res.status(400).send("No files were uploaded");
+  //  }
+
+   const user = await usermodel.findOne({username:req.session.passport.user})//through this we have find user
+   user.profileImage=req.file.filename
+   await user.save();
+   res.redirect("/profile");
 });
 
 //code for login
@@ -55,6 +70,7 @@ function isLoggedIn(req,res,next){//protection from unreg people
   }
   res.redirect("/");
 }
+
 
 
 module.exports = router;
