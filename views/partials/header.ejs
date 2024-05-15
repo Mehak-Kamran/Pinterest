@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Document</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <!-- tailwind css -->
   <script src="https://cdn.tailwindcss.com"></script>
   
 </head>
 <body>
+  <% if(nav==true){%>
+    <div class="w-full px-5 py-1 flex justify-between bg-zinc-700">
+      <h3>Pinterest</h3>
+      <div class="flex gap-5 items-center">
+        <a href="/" class="text-white">Profile</a><a href="#" class="text-white" >Feed</a><a href="/logout" class="px-3 py-2 bg-red-800 text-white rounded-md">Logout</a>
+      </div>
+  </div>
+
+  <%}%>
+  
