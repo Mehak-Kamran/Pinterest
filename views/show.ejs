@@ -1,0 +1,22 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full m-h-screen bg-zinc-700text-white px-10 py-8">
+    <div class=" pins flex flex-wrap gap-10">
+        <% user.posts.forEach(function(elem){ 
+            console.log(elem) %>
+         <div class="pins w-32">
+            <div class="w-full h-40 bg-sky-200 rounded-md overflow-hidden">
+                <img src="/images/uploads/<%= elem.image %>">
+
+            </div>
+            <h5><%= elem.title%></h5>
+             
+         </div>
+         <% })%>
+    </div>
+
+</div>
+
+
+
+<% include ./partials/footer.ejs %>
