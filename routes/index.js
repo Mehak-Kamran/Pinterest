@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport=require("passport");
-const usermodel=require("./users")
+const usermodel=require("./users");
+const postmodel=require("./post")
 const localStrategy=require("passport-local");
 const upload=require("./multer")//import multer middleware setup
 passport.use(new localStrategy(usermodel.authenticate()));
@@ -19,6 +20,17 @@ router.get("/register",function(req,res){
 router.get("/profile",isLoggedIn,async function(req,res){
   const user = await usermodel.findOne({username:req.session.passport.user})
   res.render("profile",{user,nav:true});
+})
+//add new post route
+router.get("/add",isLoggedIn,async function(req,res){
+  const user = await usermodel.findOne({username:req.session.passport.user})
+  res.render("add",{user,nav:true});
+})
+
+//create post
+router.post("/createpost",isLoggedIn,upload.single("postimage"),async function(req,res){
+  const user = await usermodel.findOne({username:req.session.passport.user})
+  res.render("add",{user,nav:true});
 })
 
 
