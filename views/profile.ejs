@@ -9,23 +9,23 @@
             <span  id="uploadicon" class="w-8 h-8 absolute bottom-3 right-2 rounded-full flex item-center justify-center bg-zinc-300">
                 <i class="text-zinc-800 ri-edit-2-line mt-1"></i>
             </span>
-            <div class="bg-zinc-100 w-40 h-40  mt-10 rounded-full overflow-hidden">
-                <img class="w-full h-full object-cover" src="https://i.pinimg.com/564x/e4/5d/11/e45d119c1583cf2ad503a212226fe52b.jpg">
+            <div class="bg-zinc-100 w-40 h-40  mt-2 rounded-full overflow-hidden">
+                <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage %>">
             </div>
         </div>
         
         <h1 class="text-3xl font-semibold">mak</h1>
         <h3 class="text-md">@username</h3>
         <a href="/edit" class=" px-7 py-2 bg-zinc-500 rounded-full inline-block mt-2">Edit</a>
-        <button class="bg-red-700 px-3 py-1 mt-5 rounded-md text-s">Add new Post</button>
+        <a href="/add" class="bg-red-700 px-3 py-1 mt-5 rounded-md text-s">Add new Post</a>
     </div>
     <div class="cards flex flex-wrap gap-10 px-10 mt-20">
         <div class="card">
         <div class="w-52 h-40 bg-zinc-100 rounded-lg overflow-hidden ">
-            <img class="w-full h-full object-cover" src="https://i.pinimg.com/564x/36/18/c5/3618c544af9803004da77bf7847ce217.jpg" alt="image">
+            <img class="w-full h-full object-cover" src="/images/uploads/<%= user?.posts[0]?.image %>"> alt="image">
         </div>
-        <h1 class="text-medium font-semibold mt-5">All Pins</h1>
-        <h5 class="text-sm font-regular opacity-60">28 Pins</h5>
+        <a href="/show/posts" class=" inline-block font-semibold mt-5">Your Uploads</a>
+        <h5 class="text-sm font-regular opacity-60"><%= user.posts.length%></h5>
     </div>
     </div>
 </div>
